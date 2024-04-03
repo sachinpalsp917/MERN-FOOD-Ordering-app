@@ -126,19 +126,19 @@ function UserProfileForm({ onSave, isLoading }: Props) {
                       <FormControl>
                         <RadioGroupItem value="male" />
                       </FormControl>
-                      <FormLabel className="font-normal">Male</FormLabel>
+                      <FormLabel className="font-semibold">Male</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
                         <RadioGroupItem value="female" />
                       </FormControl>
-                      <FormLabel className="font-normal">Female</FormLabel>
+                      <FormLabel className="font-semibold">Female</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
                         <RadioGroupItem value="others" />
                       </FormControl>
-                      <FormLabel className="font-normal">Others</FormLabel>
+                      <FormLabel className="font-semibold">Others</FormLabel>
                     </FormItem>
                   </RadioGroup>
                 </FormControl>
@@ -195,7 +195,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
               control={form.control}
               name="Mobile_no"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="font-bold">
                   <FormLabel>Mobile Number</FormLabel>
                   <FormControl>
                     <InputOTP maxLength={10} {...field}>
@@ -230,7 +230,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
             control={form.control}
             name="City"
             render={({ field }) => (
-              <FormItem className="flex-1">
+              <FormItem className="flex-1 font-semibold">
                 <FormLabel>City</FormLabel>
                 <FormControl>
                   <Input {...field} className="bg-white" />
@@ -243,7 +243,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
             control={form.control}
             name="State"
             render={({ field }) => (
-              <FormItem className="flex-1">
+              <FormItem className="flex-1 font-semibold">
                 <FormLabel>State</FormLabel>
                 <FormControl>
                   <Input {...field} className="bg-white" />
@@ -256,7 +256,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
             control={form.control}
             name="PinCode"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="font-bold">
                 <FormLabel>PinCode</FormLabel>
                 <FormControl>
                   <InputOTP maxLength={6} {...field}>
