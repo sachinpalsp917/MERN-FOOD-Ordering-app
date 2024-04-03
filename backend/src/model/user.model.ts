@@ -17,13 +17,13 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     Age: {
-      type: Number,
+      type: String,
     },
     Aadhar_no: {
-      type: Number,
+      type: String,
     },
     Mobile_no: {
-      type: Number,
+      type: String,
     },
     City: {
       type: String,

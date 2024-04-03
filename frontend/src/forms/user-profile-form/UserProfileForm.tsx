@@ -20,6 +20,8 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { User } from "@/types";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   email: z.string().optional(),
@@ -48,15 +50,20 @@ const formSchema = z.object({
 type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
+  currentUser: User;
   onSave: (userProfileData: UserFormData) => void;
   isLoading: boolean;
 };
 
-function UserProfileForm({ onSave, isLoading }: Props) {
+function UserProfileForm({ onSave, isLoading, currentUser }: Props) {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: currentUser,
   });
-  console.log(form);
+
+  useEffect(() => {
+    form.reset(currentUser);
+  }, [currentUser, form]);
   return (
     <Form {...form}>
       <form
@@ -76,7 +83,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" type="text" />
+                <Input {...field} className="bg-white font-semibold" type="text" />
               </FormControl>
             </FormItem>
           )}
@@ -124,19 +131,28 @@ function UserProfileForm({ onSave, isLoading }: Props) {
                   >
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="male" />
+                        <RadioGroupItem
+                          value="male"
+                          checked={field.value === "male"}
+                        />
                       </FormControl>
                       <FormLabel className="font-semibold">Male</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="female" />
+                        <RadioGroupItem
+                          value="female"
+                          checked={field.value === "female"}
+                        />
                       </FormControl>
                       <FormLabel className="font-semibold">Female</FormLabel>
                     </FormItem>
                     <FormItem className="flex items-center space-x-3 space-y-0">
                       <FormControl>
-                        <RadioGroupItem value="others" />
+                        <RadioGroupItem
+                          value="others"
+                          checked={field.value === "others"}
+                        />
                       </FormControl>
                       <FormLabel className="font-semibold">Others</FormLabel>
                     </FormItem>
@@ -260,7 +276,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
                 <FormLabel>PinCode</FormLabel>
                 <FormControl>
                   <InputOTP maxLength={6} {...field}>
-                    <InputOTPGroup>
+                    <InputOTPGroup className="bg-white rounded-lg">
                       <InputOTPSlot index={0} />
                       <InputOTPSlot index={1} />
                       <InputOTPSlot index={2} />
