@@ -56,6 +56,7 @@ function UserProfileForm({ onSave, isLoading }: Props) {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
   });
+  console.log(form);
   return (
     <Form {...form}>
       <form

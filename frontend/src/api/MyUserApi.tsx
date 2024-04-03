@@ -34,3 +34,50 @@ export const useCreateMyUser = () => {
 
   return { createUser, isLoading, isError, isSuccess };
 };
+
+type UpdateMyUserRequest = {
+  username: string;
+  Gender: string;
+  Age: string;
+  Aadhar_no: string;
+  Mobile_no: string;
+  City: string;
+  State: string;
+  PinCode: string;
+};
+
+export const useUpdateMyUser = () => {
+  const { getAccessTokenSilently } = useAuth0();
+
+  const updateMyUserRequest = async (formData: UpdateMyUserRequest) => {
+    const accessToken = await getAccessTokenSilently();
+    const response = await fetch(
+      `${API_BASE_URL}/api/v1/user/update-user-details`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update user");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutateAsync: updateUser,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    reset,
+  } = useMutation(updateMyUserRequest);
+
+  return { updateUser, isLoading };
+};
