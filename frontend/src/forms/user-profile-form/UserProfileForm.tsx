@@ -83,7 +83,11 @@ function UserProfileForm({ onSave, isLoading, currentUser }: Props) {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white font-semibold" type="text" />
+                <Input
+                  {...field}
+                  className="bg-white font-semibold"
+                  type="text"
+                />
               </FormControl>
             </FormItem>
           )}
@@ -211,7 +215,7 @@ function UserProfileForm({ onSave, isLoading, currentUser }: Props) {
               control={form.control}
               name="Mobile_no"
               render={({ field }) => (
-                <FormItem className="font-bold">
+                <FormItem className="font-bold container">
                   <FormLabel>Mobile Number</FormLabel>
                   <FormControl>
                     <InputOTP maxLength={10} {...field}>
